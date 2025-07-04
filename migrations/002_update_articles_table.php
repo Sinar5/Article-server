@@ -3,8 +3,8 @@
 require("../connection/connection.php");
 
 $query = "ALTER TABLE articles 
-            ADD category_name VARCHAR(100) NOT NULL,
-            ADD FOREIGN KEY (category_name) REFERENCES categories(name);";
+            ADD category_id INT NOT NULL,
+            ADD FOREIGN KEY (category_id) REFERENCES categories(id);";
 
 $execute = $mysqli->prepare($query);
 $execute->execute();

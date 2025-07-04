@@ -58,6 +58,8 @@ class ArticleController{
 
             $name = $_GET["name"];
             Article::delete($mysqli, $name);
+
+            echo ResponseService::success_response("Article $name deleted successfully.");
             return;
         }         
     }
