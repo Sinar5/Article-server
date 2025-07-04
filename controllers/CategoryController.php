@@ -45,7 +45,7 @@ class ArticleController{
         if(isset($_GET["article_id"])){
             $article_id = $_GET["article_id"];
             $category = Category::getCategoryByArticleID($mysqli, $article_id);
-            
+            echo $category;
         }
     }
 

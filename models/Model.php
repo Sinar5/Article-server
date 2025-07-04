@@ -40,6 +40,14 @@ abstract class Model{
         $value = "'" . implode( "','", array_values($data)) ."'";
 
         $sqlQuery = "INSERT INTO static::$table ($key) VALUES ($value)";
+        $query = $mysqli->prepare($sqlQuery);
+        if($query->execute()) {
+            echo "Insert completed";
+        }
+        else 
+        {
+            echo "Error: ". $query->error;
+        }
     }
     
     public static function delete(mysqli $mysqli, string $name)
@@ -61,14 +69,23 @@ abstract class Model{
         
     }
 
+    public function update(mysqli $mysqli, $data)
+    {
+        $key = implode(',', array_keys($data));
+        $value = "'" . implode( "','", array_values($data)) ."'";
 
+        $sql = sprintf("UPDATE static::$table SET ($key) WHERE ($value)");
+        $query = $mysqli->prepare($sql);
+        if($query->execute()) {
+            echo "Update completed";
+        }
+        else 
+        {
+            echo "Error: ". $query->error;
+        }
 
-    //you have to continue with the same mindset
-    //Find a solution for sending the $mysqli everytime... 
-    //Implement the following: 
-    //1- update() -> non-static function 
-    //2- create() -> static function
-    //3- delete() -> static function 
+    }
+
 }
 
 

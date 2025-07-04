@@ -40,7 +40,15 @@ class ArticleController{
         }
     }
 
-    public function getArticlesByCategoryID(){}
+    public function getArticlesByCategoryID(){
+        if(isset($_GET["category_id"])){
+            $category_id = $_GET["category_id"];
+            $articles = getArticlesByCategoryID($mysqli, $category_id);
+            $articles_array = ArticleService::articlesToArray($articles);
+            echo ResponseService::success_response($articles_array);
+            return;
+        }
+    }
 
     public function deleteAllArticles()
     {
