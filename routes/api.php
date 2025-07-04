@@ -1,8 +1,5 @@
 <?php
 
-//Routing starts here (Mapping between the request and the controller & method names)
-//It's an key-value array where the value is an key-value array
-//----------------------------------------------------------
 $apis = [
 
     //article apis
@@ -31,4 +28,4 @@ $apis = [
 
 ];
 
-//----------------------------------------------------------
+
