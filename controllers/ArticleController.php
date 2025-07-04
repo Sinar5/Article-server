@@ -10,22 +10,34 @@ class ArticleController{
     public function getAllArticles(){
         global $mysqli;
 
-        if(!isset($_GET["id"])){
-            $articles = Article::all($mysqli);
-            $articles_array = ArticleService::articlesToArray($articles); 
-            echo ResponseService::success_response($articles_array);
-            return;
-        }
-
         $id = $_GET["id"];
         $article = Article::find($mysqli, $id)->toArray();
         echo ResponseService::success_response($article);
         return;
     }
 
-    public function deleteAllArticles(){
-        die("Deleting...");
+    public function addArticle(){
+
     }
+
+    public function updateArticle(){}
+
+    public function getArticle(){
+        
+        if(!isset($_GET["id"])){
+            $articles = Article::all($mysqli);
+            $articles_array = ArticleService::articlesToArray($articles); 
+            echo ResponseService::success_response($articles_array);
+            return;
+        }
+    }
+
+    public function getArticlesByCategoryID(){}
+
+    public function deleteAllArticles(){
+    }
+
+    public function deleteArticle(){}
 }
 
 //To-Do:
