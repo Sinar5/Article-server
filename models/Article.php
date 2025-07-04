@@ -48,5 +48,22 @@ class Article extends Model{
     public function toArray(){
         return [$this->id, $this->name, $this->author, $this->description];
     }
+
+    public function getArticlesByCategoryID(mysqli $mysqli, int $category_id)
+    {
+        $sql = sprintf("Select * from articles WHERE category_id = ?");
+        
+        $query = $mysqli->prepare($sql);
+        $query->bind_param("i", $category_id);
+        $query->execute();
+
+        $data = $query->get_result();
+        $objects = [];
+        while($row = $data->fetch_assoc()){ 
+            $articles[][] = $row->toArray(); 
+        }
+        return $articles;
+
+    }
     
 }

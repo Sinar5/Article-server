@@ -31,10 +31,10 @@ class ArticleController{
 
     public function getArticle(){
         
-        if(isset($_GET["id"])){
+        if(isset($_GET["name"])){
             
-            $id = $_GET["id"];
-            $article = Article::find($mysqli, $id)->toArray();
+            $name = $_GET["name"];
+            $article = Article::find($mysqli, $name)->toArray();
             echo ResponseService::success_response($article);
             return;
         }

@@ -2,15 +2,15 @@
 abstract class Model{
 
     protected static string $table;
-    protected static string $primary_key = "id";
+    protected static string $primary_key = "name";
 
-    public static function find(mysqli $mysqli, int $id){
+    public static function find(mysqli $mysqli, string $name){
         $sql = sprintf("Select * from %s WHERE %s = ?", 
                         static::$table, 
                         static::$primary_key);
         
         $query = $mysqli->prepare($sql);
-        $query->bind_param("i", $id);
+        $query->bind_param("s", $name);
         $query->execute();
 
         $data = $query->get_result()->fetch_assoc();
@@ -60,6 +60,9 @@ abstract class Model{
         }
         
     }
+
+
+
     //you have to continue with the same mindset
     //Find a solution for sending the $mysqli everytime... 
     //Implement the following: 

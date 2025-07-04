@@ -32,16 +32,21 @@ class ArticleController{
 
     public function getCategory(){
 
-        if(!isset($_GET["id"])){
-            $id = $_GET["id"];
-            $category = Category::find($mysqli, $id)->toArray();
+        if(!isset($_GET["name"])){
+            $name = $_GET["name"];
+            $category = Category::find($mysqli, $name)->toArray();
             echo ResponseService::success_response($category);
             return;
         }
     }
 
-    public function getCategoriesByArticleID(){
+    public function getCategoryByArticleID(){
 
+        if(isset($_GET["article_id"])){
+            $article_id = $_GET["article_id"];
+            $category = Category::getCategoryByArticleID($mysqli, $article_id);
+            
+        }
     }
 
     public function deleteAllCategories(){

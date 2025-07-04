@@ -39,4 +39,19 @@ class Category extends Model {
         return [$this->id, $this->name, $this->description];
     }
     
+    public function getCategoryByArticleID(mysqli $mysqli, int $article_id)
+    {
+        $sql = sprintf("SELECT category_id FROM articles WHERE article_id = ?");
+        
+        $query = $mysqli->prepare($sql);
+        $query->bind_param("i", $article_id);
+        $query->execute();
+
+        $data = $query->get_result();
+
+        $category_id = $data->fetch_assoc();
+            
+        return $category_id? Category::find($mysqli, $category_id), null;
+
+    }
 }
